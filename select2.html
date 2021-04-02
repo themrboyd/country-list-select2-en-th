@@ -37,34 +37,31 @@
 </body>
 </html>
 <script>
-$('#country_th').select2({
-        
-        ajax: {
-            url: 'country-list-th.json',
-            dataType: 'json',
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function(obj) {
-                        return { id: obj.numeric, text: obj.name };
-                    })
-                };
-            }
 
+      $.getJSON('country-list-th.json').done(
+        function( data ) {
+            data = $.map(data, function(item) {
+                return { id: item.numeric, text: item.name };
+            });
+
+            $('#country_th').select2({
+                minimumInputLength: 0,
+                data: data
+            });
         }
-                                             
- $('#country_en').select2({
-        
-        ajax: {
-            url: 'country-list-th.json',
-            dataType: 'json',
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function(obj) {
-                        return { id: obj.numeric, text: obj.enName };
-                    })
-                };
-            }
+    );
+  
+      $.getJSON('country-list-th.json').done(
+        function( data ) {
+            data = $.map(data, function(item) {
+                return { id: item.numeric, text: item.enName };
+            });
 
+            $('#country_en').select2({
+                minimumInputLength: 0,
+                data: data
+            });
         }
+    );
 
-    });</script>
+</script>
