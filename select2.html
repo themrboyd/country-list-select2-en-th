@@ -20,8 +20,15 @@
   <div class="row">
     <div class="col-md-12>
                    <div class="form-group">
-                            <label for="country">Country</label>
-                            <select id="country" required name="country" class="form-control"></select>
+                            <label for="country">Country Thai Language</label>
+                            <select id="country_th"  name="country_th" class="form-control"></select>
+                        </div>
+                </div>
+                                                                                           
+                                                                                               <div class="col-md-12>
+                   <div class="form-group">
+                            <label for="country">Country English Language</label>
+                            <select id="country_en"  name="country_en" class="form-control"></select>
                         </div>
                 </div>
   </div>
@@ -30,7 +37,7 @@
 </body>
 </html>
 <script>
-                                           $('#country').select2({
+$('#country_th').select2({
         
         ajax: {
             url: 'country-list-th.json',
@@ -39,6 +46,21 @@
                 return {
                     results: $.map(data, function(obj) {
                         return { id: obj.numeric, text: obj.name };
+                    })
+                };
+            }
+
+        }
+                                             
+ $('#country_en').select2({
+        
+        ajax: {
+            url: 'country-list-th.json',
+            dataType: 'json',
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function(obj) {
+                        return { id: obj.numeric, text: obj.enName };
                     })
                 };
             }
